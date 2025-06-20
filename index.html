@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drag & Drop Website Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <button id="download-btn">Download HTML</button>
+    <label>Canvas BG:
+      <input type="color" id="canvas-bg-color" value="#fafafa">
+    </label>
+    <label>
+      <input type="checkbox" id="toggle-grid" />
+      Show Grid
+    </label>
+  </div>
+
+  <div class="builder-container">
+    <div class="sidebar">
+      <h2>Elements</h2>
+      <div class="element" draggable="true" data-type="text">Text</div>
+      <div class="element" draggable="true" data-type="image">Image</div>
+      <div class="element" draggable="true" data-type="button">Button</div>
+    </div>
+
+    <div class="canvas" id="canvas"></div>
+
+    <div class="properties">
+      <h2>Properties</h2>
+      <form id="property-form">
+        <div id="properties-content">
+          <p>Select an element to edit</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
