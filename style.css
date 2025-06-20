@@ -1,120 +1,140 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  body {
-    background: #f2f2f2;
-    color: #333;
-  }
-  
-  .top-bar {
-    display: flex;
-    gap: 1rem;
-    padding: 10px;
-    background: #ffffff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    justify-content: flex-start;
-    align-items: center;
-    z-index: 2;
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+  color: #333;
+}
+
+.top-bar {
+  display: flex;
+  gap: 1rem;
+  padding: 12px 20px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.top-bar button {
+  padding: 8px 16px;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.top-bar button:hover {
+  background: #4338ca;
+}
+
+.builder-container {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+.sidebar, .properties {
+  width: 20%;
+  padding: 1rem;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+}
+
+.sidebar {
+  border-right: 1px solid #eee;
+}
+
+.properties {
+  border-left: 1px solid #eee;
+}
+
+.canvas {
+  flex: 1;
+  padding: 1rem;
+  background: #fafafa;
+  position: relative;
+  overflow: auto;
+}
+
+.canvas.grid {
+  background-image: linear-gradient(#e0e0e0 1px, transparent 1px),
+                    linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.canvas-element {
+  position: absolute;
+  cursor: move;
+  padding: 6px 10px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  user-select: none;
+}
+
+.element {
+  background: #f3f4f6;
+  margin-bottom: 1rem;
+  padding: 12px;
+  text-align: center;
+  cursor: grab;
+  border-radius: 10px;
+  transition: background 0.3s;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+}
+
+.element:hover {
+  background: #e5e7eb;
+}
+
+form input, form textarea, form select {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+@media (max-width: 768px) {
   .builder-container {
-    display: flex;
-    height: calc(100vh - 50px);
-    overflow: hidden;
+    flex-direction: column;
   }
-  
+
   .sidebar, .properties {
-    width: 20%;
-    padding: 1rem;
-    background: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+    width: 100%;
+    height: auto;
   }
-  
-  .sidebar {
-    border-right: 1px solid #ddd;
-  }
-  
-  .properties {
-    border-left: 1px solid #ddd;
-  }
-  
+
   .canvas {
-    flex: 1;
-    padding: 1rem;
-    background: #fafafa;
-    position: relative;
-    overflow: auto;
-    min-height: 100%;
+    height: 60vh;
   }
-  
-  .canvas.grid {
-    background-image: linear-gradient(#ddd 1px, transparent 1px),
-                      linear-gradient(90deg, #ddd 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-  
-  .canvas-element {
-    position: absolute;
-    cursor: move;
-    padding: 5px;
-    user-select: none;
-  }
-  
-  .element {
-    background: #e0e0e0;
-    margin-bottom: 1rem;
-    padding: 10px;
-    text-align: center;
-    cursor: grab;
-    border-radius: 8px;
-    transition: background 0.3s;
-  }
-  
-  .element:hover {
-    background: #d0d0d0;
-  }
-  
-  form input, form textarea, form select {
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  .delete-btn {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  .delete-btn:hover {
-    background: #e60000;
-  }
-  
-  @media (max-width: 768px) {
-    .builder-container {
-      flex-direction: column;
-    }
-  
-    .sidebar, .properties {
-      width: 100%;
-      height: auto;
-    }
-  
-    .canvas {
-      height: 60vh;
-    }
-  }
-  
+}

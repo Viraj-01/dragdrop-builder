@@ -30,7 +30,7 @@ canvas.addEventListener("drop", e => {
       break;
     case "image":
       newElement = document.createElement("img");
-      newElement.src = "https://via.placeholder.com/150";
+      newElement.src = "elementor-placeholder-image.webp";
       newElement.style.width = "150px";
       newElement.style.height = "150px";
       break;
@@ -118,19 +118,22 @@ propertyForm.addEventListener("input", () => {
   }
 });
 
-// HTML Export
+// Download canvas as JPG
 document.getElementById("download-btn").addEventListener("click", () => {
-  const content = canvas.innerHTML;
-  const html = `
-    <!DOCTYPE html>
-    <html><body>${content}</body></html>
-  `;
-  const blob = new Blob([html], { type: 'text/html' });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "my-website.html";
-  a.click();
+  const canvasElement = document.getElementById("canvas");
+
+  html2canvas(canvasElement, {
+    allowTaint: true,
+    useCORS: true,
+    backgroundColor: null // Keeps canvas background transparent if needed
+  }).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "my-website.jpg";
+    link.href = canvas.toDataURL("image/jpeg", 1.0);
+    link.click();
+  });
 });
+
 
 // Toggle Grid Lines
 document.getElementById("toggle-grid").addEventListener("change", e => {
